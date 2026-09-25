@@ -1,454 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinkPay VIP</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkPay VIP</title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #f4f8fb;
-  font-family: Arial, sans-serif;
-  color: #26343d;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #ffffff;
+      min-height: 100vh;
+    }
 
-.container {
-  width: 100%;
-  max-width: 520px;
-  margin: auto;
-  padding: 25px 18px 40px;
-}
+    header {
+      background: #11182d;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #26304d;
+    }
 
-/* LOGO */
-.logo {
-  width: 100%;
-  max-width: 410px;
-  aspect-ratio: 1 / 1;
-  margin: 5px auto 45px;
-  border-radius: 30px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(circle at 50% 45%, #60420b 0%, #17120a 35%, #050505 75%);
-  box-shadow: 0 15px 35px rgba(0,0,0,.25);
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-.logo::before {
-  content: "";
-  position: absolute;
-  width: 68%;
-  height: 68%;
-  border: 7px solid #e6a91b;
-  border-radius: 50%;
-  box-shadow:
-    0 0 15px #ffc42d,
-    inset 0 0 20px #d99400;
-}
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #00e676, #00b0ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #07111f;
+      box-shadow: 0 0 18px rgba(0, 230, 118, 0.35);
+    }
 
-.logo-text {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  transform: skew(-7deg);
-}
+    .vip {
+      color: #00e676;
+    }
 
-.logo-main {
-  font-size: 47px;
-  font-weight: 900;
-  color: #f4f4f4;
-  text-shadow: 3px 3px 0 #8d5700;
-  letter-spacing: -3px;
-}
+    nav a {
+      color: #dce3f7;
+      text-decoration: none;
+      margin-left: 12px;
+      font-size: 14px;
+    }
 
-.logo-main span {
-  color: #f3ae13;
-}
+    nav a:hover {
+      color: #00e676;
+    }
 
-.logo-vip {
-  font-size: 46px;
-  font-weight: 900;
-  color: #ffbf19;
-  margin-top: -5px;
-  text-shadow: 2px 2px 0 #754500;
-}
+    .hero {
+      text-align: center;
+      padding: 70px 20px 45px;
+      background:
+        radial-gradient(circle at top, rgba(0,230,118,0.15), transparent 40%),
+        #0b1020;
+    }
 
-.logo-sub {
-  position: absolute;
-  bottom: 35px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: #ffbf19;
-  font-size: 25px;
-  font-weight: 900;
-  font-style: italic;
-  z-index: 3;
-}
+    .hero-logo {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #00e676, #00b0ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #07111f;
+      font-size: 44px;
+      font-weight: 900;
+      box-shadow: 0 0 35px rgba(0, 230, 118, 0.3);
+    }
 
-.coin {
-  position: absolute;
-  z-index: 4;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: radial-gradient(circle,#ffd35a,#a96800);
-  border: 3px solid #f5c13b;
-  color: #fff0a2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 29px;
-  font-weight: bold;
-  box-shadow: 0 0 12px #e6a91b;
-}
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
 
-.c1 { left: 30px; top: 210px; }
-.c2 { right: 28px; top: 235px; }
-.c3 { left: 40%; bottom: 95px; }
+    .hero p {
+      color: #aeb9d4;
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.6;
+    }
 
-/* TABS */
-.tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 22px;
-}
+    .buttons {
+      margin-top: 28px;
+    }
 
-.tab {
-  border: 0;
-  border-radius: 35px;
-  padding: 16px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #15966d;
-  background: #e5f4ee;
-}
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      margin: 6px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-.tab.active {
-  background: #159a70;
-  color: white;
-}
+    .btn-primary {
+      background: #00e676;
+      color: #07111f;
+    }
 
-/* FORM */
-.form {
-  display: none;
-}
+    .btn-secondary {
+      border: 1px solid #405070;
+      color: white;
+      background: #151d35;
+    }
 
-.form.active {
-  display: block;
-}
+    section {
+      padding: 45px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-.field {
-  height: 67px;
-  background: white;
-  border: 1px solid #dbe4e9;
-  border-radius: 36px;
-  margin: 16px 0;
-  padding: 0 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+      font-size: 28px;
+    }
 
-.icon {
-  width: 30px;
-  font-size: 23px;
-  text-align: center;
-}
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
 
-input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  font-size: 18px;
-  color: #26343d;
-}
+    .card {
+      background: #11182d;
+      border: 1px solid #26304d;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+    }
 
-input::placeholder {
-  color: #bdc6cd;
-}
+    .card-icon {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
 
-.options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 10px 28px;
-  color: #258e70;
-  font-size: 16px;
-}
+    .card h3 {
+      margin-bottom: 10px;
+    }
 
-.remember {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
+    .card p {
+      color: #aeb9d4;
+      line-height: 1.5;
+      font-size: 14px;
+    }
 
-.remember input {
-  width: 19px;
-  height: 19px;
-}
+    .demo-box {
+      background: #11182d;
+      border: 1px solid #26304d;
+      border-radius: 18px;
+      padding: 30px 20px;
+      text-align: center;
+    }
 
-.main-button {
-  width: 100%;
-  border: 0;
-  border-radius: 38px;
-  padding: 19px;
-  background: #159a70;
-  color: white;
-  font-size: 21px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(21,154,112,.25);
-}
+    .demo-box p {
+      color: #aeb9d4;
+      margin: 12px 0 22px;
+    }
 
-.message {
-  display: none;
-  margin-top: 18px;
-  padding: 14px;
-  background: white;
-  border: 1px solid #dbe4e9;
-  border-radius: 15px;
-  text-align: center;
-  color: #277e67;
-}
+    #message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #173426;
+      color: #7dffb2;
+    }
 
-.message.show {
-  display: block;
-}
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      color: #8290ad;
+      border-top: 1px solid #26304d;
+      margin-top: 30px;
+    }
 
-.note {
-  text-align: center;
-  color: #7d8991;
-  font-size: 13px;
-  line-height: 1.5;
-  margin-top: 20px;
-}
-</style>
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0 5px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <header>
+    <div class="logo">
+      <div class="logo-icon">L</div>
+      <span>LinkPay <span class="vip">VIP</span></span>
+    </div>
 
-  <!-- LINKPAY VIP LOGO -->
-  <div class="logo">
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-    <div class="coin c1">₿</div>
-    <div class="coin c2">Ξ</div>
-    <div class="coin c3">₮</div>
+  <main>
 
-    <div class="logo-text">
-      <div class="logo-main">
-        <span>link</span>pay
+    <section class="hero" id="home">
+      <div class="hero-logo">L</div>
+
+      <h1>LinkPay <span class="vip">VIP</span></h1>
+
+      <p>
+        Welcome to LinkPay VIP — a simple, modern and mobile-friendly
+        payment service interface.
+      </p>
+
+      <div class="buttons">
+        <a href="#demo" class="btn btn-primary">Get Started</a>
+        <a href="#services" class="btn btn-secondary">View Services</a>
       </div>
+    </section>
 
-      <div class="logo-vip">
-        VIP
+    <section id="services">
+      <h2 class="section-title">Our Services</h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Fast</h3>
+          <p>
+            Simple and responsive interface designed for quick access.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>Secure Design</h3>
+          <p>
+            Clean interface without asking users for sensitive credentials.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Mobile Friendly</h3>
+          <p>
+            Works smoothly on phones, tablets and desktop screens.
+          </p>
+        </div>
+
       </div>
-    </div>
+    </section>
 
-    <div class="logo-sub">
-      FAST TRADING
-    </div>
+    <section id="demo">
+      <h2 class="section-title">Demo Payment</h2>
 
-  </div>
+      <div class="demo-box">
+        <h3>LinkPay VIP Demo</h3>
 
+        <p>
+          This is a demonstration button. No real payment or sensitive
+          account information is collected.
+        </p>
 
-  <!-- SIGN IN / REGISTER -->
-  <div class="tabs">
+        <button class="btn btn-primary" onclick="showMessage()">
+          Continue Demo
+        </button>
 
-    <button
-      id="loginTab"
-      class="tab active"
-      onclick="showForm('login')">
-      Sign In
-    </button>
+        <div id="message">
+          ✓ Demo started successfully!
+        </div>
+      </div>
+    </section>
 
-    <button
-      id="registerTab"
-      class="tab"
-      onclick="showForm('register')">
-      Register
-    </button>
+    <section id="about">
+      <h2 class="section-title">About LinkPay VIP</h2>
 
-  </div>
+      <div class="demo-box">
+        <p>
+          LinkPay VIP is a simple web interface created with HTML and CSS.
+          You can customize the logo, text, buttons and services later.
+        </p>
+      </div>
+    </section>
 
+  </main>
 
-  <!-- SIGN IN FORM -->
-  <div id="login" class="form active">
+  <footer>
+    © 2026 LinkPay VIP. All rights reserved.
+  </footer>
 
-    <div class="field">
-      <div class="icon">👤</div>
-      <input
-        type="tel"
-        placeholder="Phone"
-        autocomplete="off">
-    </div>
-
-    <div class="field">
-      <div class="icon">🔒</div>
-      <input
-        type="password"
-        placeholder="Password"
-        autocomplete="off">
-    </div>
-
-    <div class="field">
-      <div class="icon">🔑</div>
-      <input
-        type="text"
-        inputmode="numeric"
-        maxlength="6"
-        placeholder="6-digit PIN"
-        autocomplete="off">
-    </div>
-
-    <div class="options">
-
-      <label class="remember">
-        <input type="checkbox">
-        Remember Me
-      </label>
-
-      <span>Privacy Agreement</span>
-
-    </div>
-
-    <button
-      class="main-button"
-      onclick="demoMessage('loginMessage')">
-      Sign In
-    </button>
-
-    <div id="loginMessage" class="message">
-      Demo only — no password, PIN or OTP is sent or stored.
-    </div>
-
-  </div>
-
-
-  <!-- REGISTER FORM -->
-  <div id="register" class="form">
-
-    <div class="field">
-      <div class="icon">👤</div>
-      <input
-        type="text"
-        placeholder="User Name"
-        autocomplete="off">
-    </div>
-
-    <div class="field">
-      <div class="icon">📱</div>
-      <input
-        type="tel"
-        placeholder="Phone"
-        autocomplete="off">
-    </div>
-
-    <div class="field">
-      <div class="icon">🔒</div>
-      <input
-        type="password"
-        placeholder="Password"
-        autocomplete="off">
-    </div>
-
-    <div class="field">
-      <div class="icon">🔑</div>
-      <input
-        type="text"
-        inputmode="numeric"
-        maxlength="6"
-        placeholder="6-digit PIN"
-        autocomplete="off">
-    </div>
-
-    <div class="field">
-      <div class="icon">🎟️</div>
-      <input
-        type="text"
-        placeholder="Invite Code"
-        autocomplete="off">
-    </div>
-
-    <button
-      class="main-button"
-      onclick="demoMessage('registerMessage')">
-      Sign Up
-    </button>
-
-    <div id="registerMessage" class="message">
-      Demo only — registration data is not sent or stored.
-    </div>
-
-  </div>
-
-
-  <div class="note">
-    Demo UI only. This page does not connect to a payment service
-    and does not collect real passwords, PINs or OTPs.
-  </div>
-
-</div>
-
-
-<script>
-
-function showForm(type) {
-
-  document.getElementById("login")
-    .classList.remove("active");
-
-  document.getElementById("register")
-    .classList.remove("active");
-
-  document.getElementById("loginTab")
-    .classList.remove("active");
-
-  document.getElementById("registerTab")
-    .classList.remove("active");
-
-
-  if (type === "login") {
-
-    document.getElementById("login")
-      .classList.add("active");
-
-    document.getElementById("loginTab")
-      .classList.add("active");
-
-  } else {
-
-    document.getElementById("register")
-      .classList.add("active");
-
-    document.getElementById("registerTab")
-      .classList.add("active");
-
-  }
-}
-
-
-function demoMessage(id) {
-
-  document.getElementById(id)
-    .classList.add("show");
-
-}
-
-</script>
+  <script>
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
+  display: flex;
