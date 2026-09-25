@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkPay VIP</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f8fb;
+  font-family: Arial, sans-serif;
+  color: #26343d;
+}
+
+.container {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  padding: 25px 18px 40px;
+}
+
+/* LOGO */
+.logo {
+  width: 100%;
+  max-width: 410px;
+  aspect-ratio: 1 / 1;
+  margin: 5px auto 45px;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 45%, #60420b 0%, #17120a 35%, #050505 75%);
+  box-shadow: 0 15px 35px rgba(0,0,0,.25);
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  width: 68%;
+  height: 68%;
+  border: 7px solid #e6a91b;
+  border-radius: 50%;
+  box-shadow:
+    0 0 15px #ffc42d,
+    inset 0 0 20px #d99400;
+}
+
+.logo-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  transform: skew(-7deg);
+}
+
+.logo-main {
+  font-size: 47px;
+  font-weight: 900;
+  color: #f4f4f4;
+  text-shadow: 3px 3px 0 #8d5700;
+  letter-spacing: -3px;
+}
+
+.logo-main span {
+  color: #f3ae13;
+}
+
+.logo-vip {
+  font-size: 46px;
+  font-weight: 900;
+  color: #ffbf19;
+  margin-top: -5px;
+  text-shadow: 2px 2px 0 #754500;
+}
+
+.logo-sub {
+  position: absolute;
+  bottom: 35px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #ffbf19;
+  font-size: 25px;
+  font-weight: 900;
+  font-style: italic;
+  z-index: 3;
+}
+
+.coin {
+  position: absolute;
+  z-index: 4;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle,#ffd35a,#a96800);
+  border: 3px solid #f5c13b;
+  color: #fff0a2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 29px;
+  font-weight: bold;
+  box-shadow: 0 0 12px #e6a91b;
+}
+
+.c1 { left: 30px; top: 210px; }
+.c2 { right: 28px; top: 235px; }
+.c3 { left: 40%; bottom: 95px; }
+
+/* TABS */
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.tab {
+  border: 0;
+  border-radius: 35px;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #15966d;
+  background: #e5f4ee;
+}
+
+.tab.active {
+  background: #159a70;
+  color: white;
+}
+
+/* FORM */
+.form {
+  display: none;
+}
+
+.form.active {
+  display: block;
+}
+
+.field {
+  height: 67px;
+  background: white;
+  border: 1px solid #dbe4e9;
+  border-radius: 36px;
+  margin: 16px 0;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon {
+  width: 30px;
+  font-size: 23px;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 18px;
+  color: #26343d;
+}
+
+input::placeholder {
+  color: #bdc6cd;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 10px 28px;
+  color: #258e70;
+  font-size: 16px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.remember input {
+  width: 19px;
+  height: 19px;
+}
+
+.main-button {
+  width: 100%;
+  border: 0;
+  border-radius: 38px;
+  padding: 19px;
+  background: #159a70;
+  color: white;
+  font-size: 21px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(21,154,112,.25);
+}
+
+.message {
+  display: none;
+  margin-top: 18px;
+  padding: 14px;
+  background: white;
+  border: 1px solid #dbe4e9;
+  border-radius: 15px;
+  text-align: center;
+  color: #277e67;
+}
+
+.message.show {
+  display: block;
+}
+
+.note {
+  text-align: center;
+  color: #7d8991;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LINKPAY VIP LOGO -->
+  <div class="logo">
+
+    <div class="coin c1">₿</div>
+    <div class="coin c2">Ξ</div>
+    <div class="coin c3">₮</div>
+
+    <div class="logo-text">
+      <div class="logo-main">
+        <span>link</span>pay
+      </div>
+
+      <div class="logo-vip">
+        VIP
+      </div>
+    </div>
+
+    <div class="logo-sub">
+      FAST TRADING
+    </div>
+
+  </div>
+
+
+  <!-- SIGN IN / REGISTER -->
+  <div class="tabs">
+
+    <button
+      id="loginTab"
+      class="tab active"
+      onclick="showForm('login')">
+      Sign In
+    </button>
+
+    <button
+      id="registerTab"
+      class="tab"
+      onclick="showForm('register')">
+      Register
+    </button>
+
+  </div>
+
+
+  <!-- SIGN IN FORM -->
+  <div id="login" class="form active">
+
+    <div class="field">
+      <div class="icon">👤</div>
+      <input
+        type="tel"
+        placeholder="Phone"
+        autocomplete="off">
+    </div>
+
+    <div class="field">
+      <div class="icon">🔒</div>
+      <input
+        type="password"
+        placeholder="Password"
+        autocomplete="off">
+    </div>
+
+    <div class="field">
+      <div class="icon">🔑</div>
+      <input
+        type="text"
+        inputmode="numeric"
+        maxlength="6"
+        placeholder="6-digit PIN"
+        autocomplete="off">
+    </div>
+
+    <div class="options">
+
+      <label class="remember">
+        <input type="checkbox">
+        Remember Me
+      </label>
+
+      <span>Privacy Agreement</span>
+
+    </div>
+
+    <button
+      class="main-button"
+      onclick="demoMessage('loginMessage')">
+      Sign In
+    </button>
+
+    <div id="loginMessage" class="message">
+      Demo only — no password, PIN or OTP is sent or stored.
+    </div>
+
+  </div>
+
+
+  <!-- REGISTER FORM -->
+  <div id="register" class="form">
+
+    <div class="field">
+      <div class="icon">👤</div>
+      <input
+        type="text"
+        placeholder="User Name"
+        autocomplete="off">
+    </div>
+
+    <div class="field">
+      <div class="icon">📱</div>
+      <input
+        type="tel"
+        placeholder="Phone"
+        autocomplete="off">
+    </div>
+
+    <div class="field">
+      <div class="icon">🔒</div>
+      <input
+        type="password"
+        placeholder="Password"
+        autocomplete="off">
+    </div>
+
+    <div class="field">
+      <div class="icon">🔑</div>
+      <input
+        type="text"
+        inputmode="numeric"
+        maxlength="6"
+        placeholder="6-digit PIN"
+        autocomplete="off">
+    </div>
+
+    <div class="field">
+      <div class="icon">🎟️</div>
+      <input
+        type="text"
+        placeholder="Invite Code"
+        autocomplete="off">
+    </div>
+
+    <button
+      class="main-button"
+      onclick="demoMessage('registerMessage')">
+      Sign Up
+    </button>
+
+    <div id="registerMessage" class="message">
+      Demo only — registration data is not sent or stored.
+    </div>
+
+  </div>
+
+
+  <div class="note">
+    Demo UI only. This page does not connect to a payment service
+    and does not collect real passwords, PINs or OTPs.
+  </div>
+
+</div>
+
+
+<script>
+
+function showForm(type) {
+
+  document.getElementById("login")
+    .classList.remove("active");
+
+  document.getElementById("register")
+    .classList.remove("active");
+
+  document.getElementById("loginTab")
+    .classList.remove("active");
+
+  document.getElementById("registerTab")
+    .classList.remove("active");
+
+
+  if (type === "login") {
+
+    document.getElementById("login")
+      .classList.add("active");
+
+    document.getElementById("loginTab")
+      .classList.add("active");
+
+  } else {
+
+    document.getElementById("register")
+      .classList.add("active");
+
+    document.getElementById("registerTab")
+      .classList.add("active");
+
+  }
+}
+
+
+function demoMessage(id) {
+
+  document.getElementById(id)
+    .classList.add("show");
+
+}
+
+</script>
+
+</body>
+</html>
